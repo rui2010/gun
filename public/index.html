@@ -7,15 +7,27 @@
     body { margin: 0; overflow: hidden; }
     canvas { display: block; width: 100vw; height: 100vh; }
     #ui { position: absolute; top: 10px; left: 10px; color: white; z-index: 10; }
+    #start-btn {
+      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      font-size: 2em; padding: 1em 2em; z-index: 20;
+      background: #222; color: #fff; border: none; border-radius: 8px; cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <div id="ui">
+  <button id="start-btn">ゲーム開始</button>
+  <div id="ui" style="display:none;">
     <span id="weapon">武器: アステロイド</span>
     <br>
     1:アステロイド 2:バイパー 3:イーグレット<br>
     WASD:移動　マウス:視点　左クリック:発射
   </div>
-  <script type="module" src="./game.js"></script>
+  <script type="module">
+    document.getElementById('start-btn').onclick = () => {
+      document.getElementById('start-btn').style.display = 'none';
+      document.getElementById('ui').style.display = '';
+      import('./game.js');
+    };
+  </script>
 </body>
 </html>
