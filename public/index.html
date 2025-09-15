@@ -5,7 +5,7 @@
   <title>ワールドトリガー銃ゲーム</title>
   <style>
     body { margin: 0; overflow: hidden; }
-    canvas { display: block; }
+    canvas { display: block; width: 100vw; height: 100vh; }
     #ui { position: absolute; top: 10px; left: 10px; color: white; z-index: 10; }
   </style>
 </head>
@@ -13,7 +13,8 @@
   <div id="ui">
     <span id="weapon">武器: アステロイド</span>
     <br>
-    1:アステロイド 2:バイパー 3:イーグレット
+    1:アステロイド 2:バイパー 3:イーグレット<br>
+    WASD:移動　マウス:視点　左クリック:発射
   </div>
   <script type="module" src="./game.js"></script>
 </body>
