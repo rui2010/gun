@@ -21,13 +21,9 @@
       background: #222; color: #fff; border: none; border-radius: 8px; cursor: pointer;
     }
   </style>
-  <!-- three.js本体とOrbitControlsをCDNから読み込み -->
-  <script type="module">
-    import * as THREE from "https://unpkg.com/three@0.155.0/build/three.module.js";
-    window.THREE = THREE;
-    import { OrbitControls } from "https://unpkg.com/three@0.155.0/examples/jsm/controls/OrbitControls.js";
-    window.OrbitControls = OrbitControls;
-  </script>
+  <!-- three.js本体とOrbitControlsを先に読み込む -->
+  <script src="https://unpkg.com/three@0.155.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.155.0/examples/js/controls/OrbitControls.js"></script>
 </head>
 <body>
   <div id="header">ワールドトリガー銃ゲーム</div>
@@ -53,6 +49,10 @@
         document.getElementById('start-btn').style.display = '';
         document.getElementById('ui').style.display = 'none';
       }
+    };
+  </script>
+</body>
+</html>
     };
   </script>
 </body>
