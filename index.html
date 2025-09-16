@@ -1,26 +1,46 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>ワールドトリガー</title>
+  <meta charset="UTF-8" />
+  <title>ワールドトリガー銃ゲーム</title>
   <style>
-    body { font-family: sans-serif; margin: 2em; }
+    body { margin: 0; overflow: hidden; }
+    canvas { display: block; width: 100vw; height: 100vh; }
+    #header {
+      position: absolute; top: 0; left: 0; width: 100vw; background: #222; color: #fff;
+      padding: 1em 0 1em 2em; z-index: 30; font-size: 1.5em;
+    }
+    #howto {
+      position: absolute; top: 70px; left: 2em; color: #fff; background: rgba(0,0,0,0.7);
+      padding: 1em; border-radius: 8px; z-index: 25; font-size: 1em;
+    }
+    #ui { position: absolute; top: 10px; left: 10px; color: white; z-index: 10; }
+    #start-btn {
+      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      font-size: 2em; padding: 1em 2em; z-index: 20;
+      background: #222; color: #fff; border: none; border-radius: 8px; cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <h1>ワールドトリガー</h1>
-  <h2>遊び方</h2>
-  <ul>
-    <li>WASDで移動</li>
-    <li>マウスで視点</li>
-    <li>クリックで発射</li>
-    <li>1～3で武器切替</li>
-  </ul>
-  <p>
-    <strong>このゲームはサーバーを起動しなくても、ローカルでそのまま遊べます。</strong>
-  </p>
-  <p>
-    <a href="README.md">README.md を直接見る</a>
-  </p>
+  <div id="header">ワールドトリガー銃ゲーム</div>
+  <div id="howto">
+    <b>遊び方</b><br>
+    WASDで移動、マウスで視点、クリックで発射、1～3で武器切替。
+  </div>
+  <button id="start-btn">ゲーム開始</button>
+  <div id="ui" style="display:none;">
+    <span id="weapon">武器: アステロイド</span>
+    <br>
+    1:アステロイド 2:バイパー 3:イーグレット<br>
+    WASD:移動　マウス:視点　左クリック:発射
+  </div>
+  <script type="module">
+    document.getElementById('start-btn').onclick = () => {
+      document.getElementById('start-btn').style.display = 'none';
+      document.getElementById('ui').style.display = '';
+      import('./game.js');
+    };
+  </script>
 </body>
 </html>
