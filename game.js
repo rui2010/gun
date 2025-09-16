@@ -1,7 +1,4 @@
 export {};
-import * as THREE from "https://unpkg.com/three@0.155.0/build/three.module.js";
-import { OrbitControls } from "https://unpkg.com/three@0.155.0/examples/jsm/controls/OrbitControls.js";
-
 const canvas = document.createElement('canvas');
 document.body.appendChild(canvas);
 
@@ -14,7 +11,7 @@ scene.background = new THREE.Color(0x222233);
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, 1.6, 5);
 
-const controls = new OrbitControls(camera, renderer.domElement);
+const controls = new window.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.25;
 controls.screenSpacePanning = false;
@@ -197,6 +194,9 @@ animate();
 
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
