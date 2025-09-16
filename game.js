@@ -1,4 +1,5 @@
-import * as THREE from 'three';
+import * as THREE from "https://unpkg.com/three@0.155.0/build/three.module.js";
+import { OrbitControls } from "https://unpkg.com/three@0.155.0/examples/jsm/controls/OrbitControls.js";
 
 const canvas = document.createElement('canvas');
 document.body.appendChild(canvas);
@@ -11,6 +12,19 @@ scene.background = new THREE.Color(0x222233);
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, 1.6, 5);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.25;
+controls.screenSpacePanning = false;
+controls.maxPolarAngle = Math.PI / 2;
+controls.minDistance = 2;
+controls.maxDistance = 10;
+
+// カメラの初期向きを設定
+const initialCameraDirection = new THREE.Vector3(0, 0, -1);
+initialCameraDirection.applyEuler(new THREE.Euler(-Math.PI / 6, 0, 0));
+camera.lookAt(initialCameraDirection);
 
 const light = new THREE.DirectionalLight(0xffffff, 1);
 light.position.set(5, 10, 7.5);
@@ -175,6 +189,7 @@ function animate() {
     }
   }
 
+  controls.update(); // OrbitControlsの更新
   renderer.render(scene, camera);
 }
 animate();
