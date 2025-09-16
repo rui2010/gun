@@ -36,10 +36,16 @@
     WASD:移動　マウス:視点　左クリック:発射
   </div>
   <script type="module">
-    document.getElementById('start-btn').onclick = () => {
+    document.getElementById('start-btn').onclick = async () => {
       document.getElementById('start-btn').style.display = 'none';
       document.getElementById('ui').style.display = '';
-      import('./game.js');
+      try {
+        await import('./game.js');
+      } catch (e) {
+        alert('ゲームの開始に失敗しました: ' + e);
+        document.getElementById('start-btn').style.display = '';
+        document.getElementById('ui').style.display = 'none';
+      }
     };
   </script>
 </body>
